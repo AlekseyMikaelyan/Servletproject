@@ -34,9 +34,10 @@ public class ServletExample extends HttpServlet {
         userInfo.put(req.getRemoteAddr(), req.getHeader("User-Agent"));
 
         for (Map.Entry<String, String> info : userInfo.entrySet()) {
-            if(!info.getKey().equals(req.getRemoteAddr())) {
+            if(!info.getKey().equals(req.getRemoteAddr())){
                 responseBody.println("<p><b>" + info.getKey() + " :: " + info.getValue() + "</b></p>");
             }
+            responseBody.println("<p>" + info.getKey() + " :: " + info.getValue() + "</p>");
         }
     }
 
