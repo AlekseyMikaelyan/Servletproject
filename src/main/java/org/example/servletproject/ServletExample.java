@@ -18,7 +18,7 @@ public class ServletExample extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(ServletExample.class);
 
-    Map<String, String> userInfo = new ConcurrentHashMap<>();
+    private final Map<String, String> userInfo = new ConcurrentHashMap<>();
 
     @Override
     public void init() {
@@ -31,7 +31,7 @@ public class ServletExample extends HttpServlet {
 
         resp.setContentType("text/html");
 
-        userInfo.put(req.getHeader("User-Agent"), req.getRemoteAddr());
+        userInfo.put(req.getRemoteAddr(), req.getHeader("User-Agent"));
 
         for (Map.Entry<String, String> info : userInfo.entrySet()) {
             responseBody.println("<p><b>" + info.getKey() + " :: " + info.getValue() + "</b></p>");
